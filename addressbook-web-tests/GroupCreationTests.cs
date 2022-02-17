@@ -48,7 +48,8 @@ namespace addressbook_web_tests
             InitGroupCreation();
             GroupData group = new GroupData("group");
             group.Header = "group1";
-            group.Footer = "small group";            
+            group.Footer = "small group";
+            FillGroupForm(group);
             SubmitGroupCreation();
             ReturnToGroupPage();
             ReturnToHomePage();
