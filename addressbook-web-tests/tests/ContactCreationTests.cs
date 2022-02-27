@@ -12,9 +12,6 @@ namespace addressbook_web_tests
         [Test]
         public void ContactCreationTest()
         {
-            OpenHomePage();
-            Login(new AccountData("admin", "secret"));
-            InitContactCreation();
             ContactData contact = new ContactData("Homer");
             contact.Middlename = "Jay";
             contact.Lastname = "Simpson";
@@ -39,12 +36,18 @@ namespace addressbook_web_tests
             contact.NewGroup = "[none]";
             contact.HomeAddress = "Springfield, Evergreen terrace";
             contact.HouseNumber = "742";
-            contact.Notes = "empty";            
-            AddContactData(contact);
-            SubmitContactCreation();
-            ReturnToHomePage();
-            Logout();
-        }             
+            contact.Notes = "empty";
+            app.ContactHelper.Create(contact);
+        }
+
+        [Test]
+        public void EmptyContactCreationTest()
+        {
+             ContactData contact = new ContactData("Elon");
+            contact.Middlename = "Reeve";
+            contact.Lastname = "Musk";
+            app.ContactHelper.Create(contact);
+        }
     }
 }
 

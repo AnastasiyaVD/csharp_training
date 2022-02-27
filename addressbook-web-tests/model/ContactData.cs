@@ -24,12 +24,12 @@ namespace addressbook_web_tests
         private string email3 = "";
         private string homepage = "";
         private string birthdayDay = "";
-        private string birthdayMonth = "";
+        private string birthdayMonth = "-";
         private string birthdayYear = "";
         private string anniversaryDay = "";
-        private string anniversaryMonth = "";
+        private string anniversaryMonth = "-";
         private string anniversaryYear = "";
-        private string newGroup = "";
+        private string newGroup = "[none]";
         private string homeAddress = "";
         private string houseNumber = "";
         private string notes = "";
