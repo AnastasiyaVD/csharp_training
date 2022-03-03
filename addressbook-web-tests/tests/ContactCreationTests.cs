@@ -33,7 +33,6 @@ namespace addressbook_web_tests
             contact.AnniversaryDay = "10";
             contact.AnniversaryMonth = "May";
             contact.AnniversaryYear = "2059";
-            contact.NewGroup = "[none]";
             contact.HomeAddress = "Springfield, Evergreen terrace";
             contact.HouseNumber = "742";
             contact.Notes = "empty";

@@ -15,6 +15,30 @@ namespace addressbook_web_tests
             : base(manager)
         {
         }
+
+        public ContactHelper Remove(int r)
+        {
+            manager.NavigationHelper.GoToMainPage();//GroupHelper обращается к manager, чтобы получить доступ к NavigationHelper
+
+            SelectContact(r);
+            RemoveContact();
+            CloseDialogWindow();
+            return this;
+        }
+
+        public ContactHelper Modify(int v, int p, ContactData newData)
+        {
+            manager.NavigationHelper.GoToMainPage();
+            SelectContact(v);
+            InitContactModification(p);
+            AddContactData(newData);
+            SubmitContactModification();
+            ReturnToHomePage();
+            return this;
+        }
+
+        
+
         //это общий метод создания контакта ->
         public ContactHelper Create(ContactData contact)
         {
@@ -77,8 +101,6 @@ namespace addressbook_web_tests
             driver.FindElement(By.Name("homepage")).SendKeys(contact.Homepage);
             //AddBirthday
             driver.FindElement(By.Name("bday")).Click();
-            driver.FindElement(By.Name("theform")).Click();
-            driver.FindElement(By.Name("bday")).Click();
             new SelectElement(driver.FindElement(By.Name("bday"))).SelectByText(contact.BirthdayDay);
             driver.FindElement(By.Name("bmonth")).Click();
             new SelectElement(driver.FindElement(By.Name("bmonth"))).SelectByText(contact.BirthdayMonth);
@@ -93,9 +115,6 @@ namespace addressbook_web_tests
             driver.FindElement(By.Name("ayear")).Click();
             driver.FindElement(By.Name("ayear")).Clear();
             driver.FindElement(By.Name("ayear")).SendKeys(contact.AnniversaryYear);
-            //GroupSelection
-            driver.FindElement(By.Name("new_group")).Click();
-            new SelectElement(driver.FindElement(By.Name("new_group"))).SelectByText(contact.NewGroup);
             //AddHomeAddress            
             driver.FindElement(By.Name("address2")).Click();
             driver.FindElement(By.Name("address2")).Clear();
@@ -109,6 +128,28 @@ namespace addressbook_web_tests
             driver.FindElement(By.Name("notes")).SendKeys(contact.Notes);
             return this;
         }
+
+        public ContactHelper SelectContact(int index)
+        {
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + index + "]/td/input")).Click();
+            return this;
+        }
+        public ContactHelper InitContactModification(int p)
+        {
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + p + "]/td[8]/a/img")).Click();
+            return this;
+        }
+        
+        public ContactHelper RemoveContact()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            return this;
+        }
+        public ContactHelper SubmitContactModification()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
@@ -117,6 +158,11 @@ namespace addressbook_web_tests
         public ContactHelper ReturnToHomePage()
         {
             driver.FindElement(By.LinkText("home page")).Click();
+            return this;
+        }
+        public ContactHelper CloseDialogWindow()
+        {
+            driver.SwitchTo().Alert().Accept();
             return this;
         }
     }

@@ -18,30 +18,30 @@
     </TypeIdentifier>
   </Class>
   <Class Name="addressbook_web_tests.GroupRemovalTests" Collapsed="true">
-    <Position X="3.25" Y="5.25" Width="1.5" />
+    <Position X="3.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>tests\GroupRemovalTest.cs</FileName>
+      <FileName>tests\GroupRemovalTests.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="addressbook_web_tests.ContactCreationTests" Collapsed="true">
-    <Position X="6" Y="5.25" Width="1.5" />
+    <Position X="5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>tests\ContactCreationTests.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="addressbook_web_tests.ContactHelper" Collapsed="true">
     <Position X="4.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAAAAAAAAAAAAIAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AABAIAAAGAAAAAAIAAAABAAAAgAAAECAAAAYAAAAAAA=</HashCode>
       <FileName>appmanager\ContactHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="addressbook_web_tests.GroupHelper" Collapsed="true">
     <Position X="6" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAABABAAAAAAAAAAAAAABEEAAAAAAAABAAAA=</HashCode>
+      <HashCode>AAACIACAAABABAAAAAAABAAAAAABEEAAAAAAAABAAAA=</HashCode>
       <FileName>appmanager\GroupHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -55,7 +55,7 @@
   <Class Name="addressbook_web_tests.NavigationHelper" Collapsed="true">
     <Position X="9" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAiA=</HashCode>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAIAiA=</HashCode>
       <FileName>appmanager\NavigationHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -78,6 +78,27 @@
       <Field Name="groupHelper" />
       <Field Name="contactHelper" />
     </ShowAsAssociation>
+  </Class>
+  <Class Name="addressbook_web_tests.GroupModificationTests" Collapsed="true">
+    <Position X="2" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\GroupModificationTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="addressbook_web_tests.ContactModificationTests" Collapsed="true">
+    <Position X="6.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>tests\ContactModificationTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="addressbook_web_tests.ContactRemovalTests" Collapsed="true">
+    <Position X="8" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>tests\ContactRemovalTests.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

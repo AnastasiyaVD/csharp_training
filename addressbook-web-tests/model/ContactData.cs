@@ -23,13 +23,12 @@ namespace addressbook_web_tests
         private string email2 = "";
         private string email3 = "";
         private string homepage = "";
-        private string birthdayDay = "";
+        private string birthdayDay = "-";
         private string birthdayMonth = "-";
         private string birthdayYear = "";
-        private string anniversaryDay = "";
+        private string anniversaryDay = "-";
         private string anniversaryMonth = "-";
         private string anniversaryYear = "";
-        private string newGroup = "[none]";
         private string homeAddress = "";
         private string houseNumber = "";
         private string notes = "";
@@ -270,17 +269,7 @@ namespace addressbook_web_tests
                 anniversaryYear = value;
             }
         }
-        public string NewGroup
-        {
-            get
-            {
-                return newGroup;
-            }
-            set
-            {
-                newGroup = value;
-            }
-        }
+        
         public string HomeAddress
         {
             get

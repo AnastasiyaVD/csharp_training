@@ -23,6 +23,12 @@ namespace addressbook_web_tests
             driver.Navigate().GoToUrl(baseURL);
             return this;
         }
+        public NavigationHelper GoToMainPage()
+        {
+            driver.FindElement(By.LinkText("home")).Click();
+            return this;
+        }
+
         public NavigationHelper GoToGroupPage()
         {
             driver.FindElement(By.LinkText("groups")).Click();

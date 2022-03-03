@@ -16,6 +16,7 @@ namespace addressbook_web_tests
             : base(manager) // и в базовый класс передается ссылка на менеджер
         {
         }
+
         //это общий метод создания группы ->
         public GroupHelper Create(GroupData group)
         {
@@ -31,11 +32,21 @@ namespace addressbook_web_tests
         {
             manager.NavigationHelper.GoToGroupPage();//GroupHelper обращается к manager, чтобы получить доступ к NavigationHelper
 
-            SelectGroup(1);
+            SelectGroup(p);
             RemoveGroup();
             return this; //возвращает ссылку на тот же самый метод
         }
 
+        public GroupHelper Modify(int p, GroupData newData)
+        {
+            manager.NavigationHelper.GoToGroupPage();
+            SelectGroup(p);
+            InitGroupModification();
+            FillGroupForm(newData);
+            SubmitGropModification();
+            ReturnToGroupPage();
+            return this;
+        }
 
         public GroupHelper InitGroupCreation()
         {
@@ -73,6 +84,18 @@ namespace addressbook_web_tests
         public GroupHelper RemoveGroup()
         {
             driver.FindElement(By.XPath("//input[5]")).Click();
+            return this;
+        }
+
+        public GroupHelper InitGroupModification()
+        {
+            driver.FindElement(By.Name("edit")).Click();
+            return this;
+        }
+
+        public GroupHelper SubmitGropModification()
+        {
+            driver.FindElement(By.Name("update")).Click();
             return this;
         }
     }
