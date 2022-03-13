@@ -47,7 +47,7 @@ namespace addressbook_web_tests
             newData.HouseNumber = null;
             newData.Notes = null;
 
-            app.ContactHelper.Modify(3, 3, newData); //2 - это первый контакт (1-заголовок)
+            app.ContactHelper.Modify(2, 2, newData); //2 - это первый контакт (1-заголовок)
         }
     }
 }

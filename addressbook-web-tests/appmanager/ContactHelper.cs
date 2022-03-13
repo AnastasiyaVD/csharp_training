@@ -96,11 +96,7 @@ namespace addressbook_web_tests
         {
             if (!CheckedContactCreate(index))
             {
-                for (int i = 1; i <= index-1; i++) //(index-1) тк первый пункт в списке контактов имеет индекс 2
-                {
-                    CreateNewEmptyContact();
-                }
-
+              CreateNewEmptyContact();
             }
 
             driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + index + "]/td/input")).Click();

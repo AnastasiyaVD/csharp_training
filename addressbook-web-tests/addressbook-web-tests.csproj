@@ -84,7 +84,8 @@
     <Compile Include="tests\GroupCreationTests.cs" />
     <Compile Include="tests\ContactCreationTests.cs" />
     <Compile Include="model\ContactData.cs" />
-    <Compile Include="tests\IfThenElse.cs" />
+    <Compile Include="theory\IfThenElse.cs" />
+    <Compile Include="theory\ForForeachWhileDoWhile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

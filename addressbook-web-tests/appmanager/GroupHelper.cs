@@ -76,11 +76,7 @@ namespace addressbook_web_tests
         {
             if (! CheckedGpoupCreate(index))
             {
-                for (int i = 1; i <= index; i++)
-                {
-                    CreateNewEmptyGroup();
-                }
-                
+             CreateNewEmptyGroup();
             }
 
             driver.FindElement(By.XPath("//div[@id='content']/form/span[" + index + "]/input")).Click();
@@ -114,6 +110,18 @@ namespace addressbook_web_tests
         {
             driver.FindElement(By.Name("update")).Click();
             return this;
+        }
+        public List<GroupData> GetGroupList() // читаем элементы с web страницы, преобразовываем их в нужные объекты типа GroupData, а потом они будут сравниваться в тесте
+        {
+            List<GroupData> groups = new List<GroupData>();
+            manager.NavigationHelper.GoToGroupPage(); //переход на нужную страницу
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebElement element in elements) // для каждого элемента в такой-то коллекции нужно выполнить такое-то действие
+            {
+                groups.Add(new GroupData(element.Text));// element.Text отправляется в качестве параметра в groups
+            }
+                
+            return groups;
         }
     }
 }
