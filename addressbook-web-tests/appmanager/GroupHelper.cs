@@ -37,7 +37,7 @@ namespace addressbook_web_tests
             return this; //возвращает ссылку на тот же самый метод
         }
 
-        public GroupHelper Modify(int p, GroupData newData)
+        public void Modify(int p, GroupData newData)
         {
             manager.NavigationHelper.GoToGroupPage();
             SelectGroup(p);
@@ -45,7 +45,6 @@ namespace addressbook_web_tests
             FillGroupForm(newData);
             SubmitGropModification();
             ReturnToGroupPage();
-            return this;
         }
 
         public GroupHelper InitGroupCreation()
@@ -55,17 +54,14 @@ namespace addressbook_web_tests
         }
         public GroupHelper FillGroupForm(GroupData group)
         {
-            driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
-            driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
-            driver.FindElement(By.Name("group_footer")).Click();
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
+            Type(By.Name("group_name"), group.Name);
+            Type(By.Name("group_header"), group.Header);
+            Type(By.Name("group_footer"), group.Footer);
             return this;
         }
+
+        
+
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
@@ -76,11 +72,32 @@ namespace addressbook_web_tests
             driver.FindElement(By.LinkText("group page")).Click();
             return this;
         }
-        public GroupHelper SelectGroup(int index)
+        public void SelectGroup(int index)
         {
+            if (! CheckedGpoupCreate(index))
+            {
+                for (int i = 1; i <= index; i++)
+                {
+                    CreateNewEmptyGroup();
+                }
+                
+            }
+
             driver.FindElement(By.XPath("//div[@id='content']/form/span[" + index + "]/input")).Click();
-            return this;
         }
+
+        public bool CheckedGpoupCreate(int index)
+        {
+            return IsElementPresent(By.XPath("//div[@id='content']/form/span[" + index + "]/input"));
+        }
+
+        public void CreateNewEmptyGroup()
+        {
+            driver.FindElement(By.Name("new")).Click();
+            driver.FindElement(By.Name("submit")).Click();
+            driver.FindElement(By.LinkText("group page")).Click();
+        }
+
         public GroupHelper RemoveGroup()
         {
             driver.FindElement(By.XPath("//input[5]")).Click();

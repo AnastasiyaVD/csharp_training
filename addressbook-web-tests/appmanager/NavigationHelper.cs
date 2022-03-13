@@ -18,26 +18,42 @@ namespace addressbook_web_tests
         {
             this.baseURL = baseURL;
         }
-        public NavigationHelper OpenHomePage()
+        public void OpenHomePage()
         {
+            if (driver.Url == baseURL)
+            {
+                return;
+            }
             driver.Navigate().GoToUrl(baseURL);
-            return this;
         }
-        public NavigationHelper GoToMainPage()
+        public void GoToMainPage()
         {
+            if (driver.Url == baseURL
+                && IsElementPresent(By.LinkText("Last name")))
+            {
+                return;
+            }
             driver.FindElement(By.LinkText("home")).Click();
-            return this;
         }
 
-        public NavigationHelper GoToGroupPage()
+        public void GoToGroupPage()
         {
+            if (driver.Url == baseURL + "group.php"
+                && IsElementPresent(By.Name("new")))
+            {
+                return;
+            }
             driver.FindElement(By.LinkText("groups")).Click();
-            return this;
         }
-        public NavigationHelper InitContactCreation()
+        public void InitContactCreation()
         {
+            if (driver.Url == baseURL + "edit.php"
+                && driver.FindElement(By.TagName("h1")).Text
+                == "Edit / add address book entry")
+            {
+                return;
+            }
             driver.FindElement(By.LinkText("add new")).Click();
-            return this;
         }
     }
 }

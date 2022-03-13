@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -19,7 +20,9 @@ namespace addressbook_web_tests
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
 
-        public ApplicationManager() 
+        private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>(); // для многопоточности
+        
+        private ApplicationManager() 
         {
             driver = new ChromeDriver();
             baseURL = "http://localhost/addressbook/";
@@ -31,16 +34,7 @@ namespace addressbook_web_tests
             contactHelper = new ContactHelper(this);
         }
 
-        public IWebDriver Driver 
-        {
-            get 
-            {
-                return driver;
-            } 
-                
-        }
-
-        public void Stop()
+        ~ApplicationManager() //название деструктора (тильда и название класса)
         {
             try
             {
@@ -50,7 +44,29 @@ namespace addressbook_web_tests
             {
                 // Ignore errors if unable to close the browser
             }
+
         }
+
+        public static ApplicationManager GetInstance()
+        {
+            if (! app.IsValueCreated) 
+            {
+                ApplicationManager newInstance = new ApplicationManager();
+                newInstance.NavigationHelper.OpenHomePage();
+                app.Value = newInstance;
+            }
+            return app.Value;
+        }
+
+        public IWebDriver Driver 
+        {
+            get 
+            {
+                return driver;
+            } 
+                
+        }
+
         //делаем доступ к помошникам (Helper) при помощи создания свойста с get-тером
         public LoginHelper Auth //authentication
         {

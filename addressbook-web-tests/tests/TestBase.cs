@@ -9,21 +9,14 @@ namespace addressbook_web_tests
     public class TestBase
     {
         protected ApplicationManager app;
-        
 
         [SetUp]
-        public void SetupTest()
+        public void SetupApplicationManager()
         {
-            app = new ApplicationManager(); //инициализация ApplicationManager
-            app.NavigationHelper.OpenHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
+            app = ApplicationManager.GetInstance();
+            // обращаемся к методу GetIstance, чтобы получить доступ к единственному
+            // экземпляру который хранится внутри ApplicationManager, который автоматически
+            // создается при первом обращении
         }
-
-        [TearDown]
-        public void TeardownTest()
-        {
-            app.Auth.Logout();
-            app.Stop(); 
-        }        
     }
 }
